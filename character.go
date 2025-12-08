@@ -2,7 +2,7 @@ package main
 
 type Character struct {
 	BasicInfo struct {
-		CharacterName string `yaml:"name"`
+		characterName string `yaml:"name"`
 		XID           int    `yaml:"xid"`
 		Sex           string `yaml:"sex"`
 		Height        string `yaml:"height"`
@@ -19,8 +19,8 @@ type Character struct {
 			Current int `yaml:"current"`
 			Max     int `yaml:"max"`
 		} `yaml:"bursts"`
-		SinMarks struct {
-			SinName     string `yaml:"sin_name"`
+		SinMarks []struct {
+			SinName     string `yaml:"name"`
 			Description string `yaml:"description"`
 		} `yaml:"sin_marks"`
 	} `yaml:"basic_info"`
@@ -45,27 +45,31 @@ type Character struct {
 					Max     int `yaml:"max"`
 				} `yaml:"advances_number"`
 			} `yaml:"advances"`
-		}
+		} `yaml:"advancement"`
 		Agendas []struct {
 			AgendaName string   `yaml:"name"`
 			Abilities  []string `yaml:"abilities"`
 		} `yaml:"agendas"`
 		Blasphemies []struct {
-			BlasphemyName string `yaml:"name"`
+			BlaspehmyName string `yaml:"name"`
 			Abilities     []struct {
 				AbilityName string   `yaml:"name"`
-				AbilityType string   `yaml:"type"`
+				Type        string   `yaml:"type"`
 				Cost        string   `yaml:"cost"`
 				Keywords    []string `yaml:"keywords"`
 				Description string   `yaml:"description"`
-			} `yaml:"abilities"`
+			} `yaml:"abilities,omitempty"`
+			Type        string   `yaml:"type,omitempty"`
+			Cost        string   `yaml:"cost,omitempty"`
+			Keywords    []string `yaml:"keywords,omitempty"`
+			Description string   `yaml:"description,omitempty"`
 		} `yaml:"blasphemies"`
 	} `yaml:"character_stats"`
 	Other struct {
 		Notes         string `yaml:"notes"`
-		Questionnaire struct {
+		Questionnaire []struct {
 			Question string `yaml:"question"`
 			Answer   string `yaml:"answer"`
 		} `yaml:"questionnaire"`
-	} `yaml:"character"`
+	} `yaml:"other"`
 }
