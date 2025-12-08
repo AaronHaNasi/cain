@@ -39,8 +39,33 @@ type Character struct {
 		Advancement struct {
 			Experience int `yaml:"experience"`
 			Advances   struct {
-				Description []string `yaml:"description"`
-			}
+				Description    []string `yaml:"description"`
+				AdvancesNumber struct {
+					Current int `yaml:"current"`
+					Max     int `yaml:"max"`
+				} `yaml:"advances_number"`
+			} `yaml:"advances"`
 		}
+		Agendas []struct {
+			AgendaName string   `yaml:"name"`
+			Abilities  []string `yaml:"abilities"`
+		} `yaml:"agendas"`
+		Blasphemies []struct {
+			BlasphemyName string `yaml:"name"`
+			Abilities     []struct {
+				AbilityName string   `yaml:"name"`
+				AbilityType string   `yaml:"type"`
+				Cost        string   `yaml:"cost"`
+				Keywords    []string `yaml:"keywords"`
+				Description string   `yaml:"description"`
+			} `yaml:"abilities"`
+		} `yaml:"blasphemies"`
 	} `yaml:"character_stats"`
+	Other struct {
+		Notes         string `yaml:"notes"`
+		Questionnaire struct {
+			Question string `yaml:"question"`
+			Answer   string `yaml:"answer"`
+		} `yaml:"questionnaire"`
+	} `yaml:"character"`
 }
