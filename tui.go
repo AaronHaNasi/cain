@@ -16,7 +16,7 @@ type model struct {
 	err       error
 }
 
-func initialOpenFileModel() model {
+func initialModel() model {
 	ti := textinput.New()
 	ti.Placeholder = "Exrocist File"
 	ti.Focus()

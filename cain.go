@@ -27,10 +27,18 @@ func main() {
 			log.Fatalf("cannot unmarshal data: %v", err)
 		}
 	} else {
-		p := tea.NewProgram(initialOpenFileModel())
-		if _, err := p.Run(); err != nil {
+		p := tea.NewProgram(initialModel())
+		userInput, err := p.Run()
+		if err != nil {
 			log.Fatal(err)
 			os.Exit(2)
+		} else {
+			userInputData := userInput.(model)
+			characterData := getCharacterData(userInputData.textInput.Value())
+			err := yaml.Unmarshal(characterData, &character)
+			if err != nil {
+				log.Fatalf("cannot unmarshal data: %v", err)
+			}
 		}
 	}
 }
