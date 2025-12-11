@@ -7,6 +7,17 @@ import (
 	tea "github.com/charmbracelet/bubbletea"
 )
 
+const (
+	COMMAND_VIEW = iota
+	EXROCIST_VIEW
+)
+
+const (
+	FOCUS_INVALID = iota
+	COMMAND_FOCUS
+	EXROCIST_FOCUS
+)
+
 type (
 	errMsg error
 )
@@ -14,6 +25,8 @@ type (
 type model struct {
 	textInput textinput.Model
 	err       error
+	focus     int
+	view      int
 }
 
 func initialModel() model {
